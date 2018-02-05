@@ -11,11 +11,8 @@ namespace Generator
             var brain = new NullMoveBrain(new PieceSquareTablesEvaluator(), 200);
             brain.SearchInformationReport += brain_SearchInformationReport;
 
-            var testSuite = new TestSuite(@"..\..\wac.epd");
-
-            testSuite.Run(brain, 1);
-
-            //Console.ReadKey();
+            var board = Board.FromFEN("6kr/p1p1qppp/5n2/1p6/PP6/K7/3r4/8 b - - 0 36");
+            brain.Analyze(board, new TimeControl(TimeControl.TimeControlTypes.SecondsPerMove, 10));
         }
 
         static void brain_SearchInformationReport(Brain.SearchInformation information)
